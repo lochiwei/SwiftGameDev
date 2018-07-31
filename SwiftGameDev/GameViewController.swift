@@ -9,73 +9,53 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import Extensions
 
 class GameViewController: UIViewController {
+    
+    // MARK: - Outlets
+    
+    var scene: SCNScene!
+    var sceneView: SCNView!
+    
+    // MARK: - Controller Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // init scene
+        setupSceneView()
+    }
+    
+    func setupSceneView() {
         
-        // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // scene
+        //let scene = SCNScene(named: "art.scnassets/hero.dae")!
+        scene = SCNScene()
+        scene.setup()
         
-        // create and add a camera to the scene
-        let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
-        scene.rootNode.addChildNode(cameraNode)
+        // scene view
+        sceneView = view as! SCNView
         
-        // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        sceneView.scene = scene
+        sceneView.allowsCameraControl = true
+        sceneView.showsStatistics = true
+        sceneView.backgroundColor = UIColor.black
         
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
-        
-        // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
-        
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
-        
-        // set the scene to the view
-        scnView.scene = scene
-        
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
-        
-        // show statistics such as fps and timing information
-        scnView.showsStatistics = true
-        
-        // configure the view
-        scnView.backgroundColor = UIColor.black
-        
-        // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
+        // tap recognizer
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
+        sceneView.add(tap)
     }
     
     @objc
-    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
+    func onTap(_ tap: UIGestureRecognizer) {
         
         // check what nodes are tapped
-        let p = gestureRecognize.location(in: scnView)
-        let hitResults = scnView.hitTest(p, options: [:])
+        let p = tap.location(in: sceneView)
+        let hitResults = sceneView.hitTest(p, options: [:])
+        
         // check that we clicked on at least one object
         if hitResults.count > 0 {
+            
             // retrieved the first clicked object
             let result = hitResults[0]
             
@@ -88,6 +68,7 @@ class GameViewController: UIViewController {
             
             // on completion - unhighlight
             SCNTransaction.completionBlock = {
+                
                 SCNTransaction.begin()
                 SCNTransaction.animationDuration = 0.5
                 
@@ -102,25 +83,14 @@ class GameViewController: UIViewController {
         }
     }
     
-    override var shouldAutorotate: Bool {
-        return true
-    }
+    // MARK: - Controller Settings
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    override var shouldAutorotate: Bool { return true }
+    override var prefersStatusBarHidden: Bool { return true }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return UIDevice.current.userInterfaceIdiom == .phone ? .allButUpsideDown : .all
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
 
-}
+}// end: GameViewController
