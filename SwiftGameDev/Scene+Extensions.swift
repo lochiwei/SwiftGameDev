@@ -17,16 +17,18 @@ extension SCNScene {
         // nodes
         _ = rootNode.newShape(
             SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0),
-            at: [0, 0.5, 0], color: .green
+            at: [0, 0.5, 0], diffuse: UIColor.red
         )
         
         // camera
-        _ = rootNode.newCameraNode(at: [0, 0, 15])
+        _ = rootNode.newCameraNode(at: [10, 15, 30], lookAt: rootNode)
         
         // lights
         _ = rootNode.newLightNode(.omni, at: [0, 15, 15])
-        let ambientLightNode = rootNode.newLightNode(.ambient)
-        ambientLightNode.light?.color = UIColor.darkGray
+        _ = rootNode.newLightNode(.ambient, color: UIColor.darkGray)
+        
+        // floor
+        _ = rootNode.newShape(SCNFloor(), diffuse: "floor")
         
     }// end: setup()
     
@@ -35,13 +37,23 @@ extension SCNScene {
 // my extension
 extension SCNNode {
     
+    // MARK: - Camera
+    // --------------
+    
     // add camera to node
-    // usage: node.newCameraNode(at: position)
-    func newCameraNode(at position: SCNVector3? = nil) -> SCNNode {
+    // usage: let cameraNode = node.newCameraNode(at: position)
+    func newCameraNode(at position: SCNVector3? = nil, lookAt target: SCNNode? = nil) -> SCNNode {
         
+        // camera
+        let camera = SCNCamera()
+        
+        // camera node
         let cameraNode = SCNNode()
-        cameraNode.camera = SCNCamera()
+        cameraNode.camera = camera
         if let p = position { cameraNode.position = p }
+        if let t = target { cameraNode.look(at: t) }
+        
+        // graph tree
         add(cameraNode)
         
         return cameraNode
@@ -50,13 +62,20 @@ extension SCNNode {
     // MARK: - Lights
     // --------------
     
-    func newLightNode(_ type: SCNLight.LightType, at position:SCNVector3? = nil) -> SCNNode {
+    // usage: let lightNode = node.newLightNode(.omni, at: position)
+    func newLightNode(_ type: SCNLight.LightType, color: Any? = nil, at position:SCNVector3? = nil) -> SCNNode {
 
+        // light
+        let light = SCNLight()
+        light.type = type
+        if let c = color { light.color = c }
+        
+        // light node
         let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = type
+        lightNode.light = light
         if let p = position { lightNode.position = p }
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        
+        // graph tree
         add(lightNode)
         
         return lightNode

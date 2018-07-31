@@ -22,7 +22,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // init scene
         setupSceneView()
     }
     
