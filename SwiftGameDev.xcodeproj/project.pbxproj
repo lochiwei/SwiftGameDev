@@ -11,11 +11,11 @@
 		1AAC144E210F59D4004E320A /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC144D210F59D4004E320A /* art.scnassets */; };
 		1AAC1450210F59D4004E320A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC144F210F59D4004E320A /* GameViewController.swift */; };
 		1AAC1453210F59D4004E320A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC1451210F59D4004E320A /* Main.storyboard */; };
-		1AAC1455210F59D8004E320A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC1454210F59D8004E320A /* Assets.xcassets */; };
 		1AAC1458210F59D8004E320A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC1456210F59D8004E320A /* LaunchScreen.storyboard */; };
 		1AAC1465210F59EF004E320A /* Extensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAC1464210F59E9004E320A /* Extensions.framework */; };
 		1AAC1466210F59EF004E320A /* Extensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAC1464210F59E9004E320A /* Extensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AAC146D210FDFF0004E320A /* Scene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC146C210FDFF0004E320A /* Scene+Extensions.swift */; };
+		1AAC147621106497004E320A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AAC147521106497004E320A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +55,11 @@
 		1AAC144D210F59D4004E320A /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		1AAC144F210F59D4004E320A /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		1AAC1452210F59D4004E320A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1AAC1454210F59D8004E320A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AAC1457210F59D8004E320A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AAC1459210F59D8004E320A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAC145F210F59E8004E320A /* Extensions.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Extensions.xcodeproj; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/iOS Dev/Frameworks/Extensions/Extensions.xcodeproj"; sourceTree = "<group>"; };
 		1AAC146C210FDFF0004E320A /* Scene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scene+Extensions.swift"; sourceTree = "<group>"; };
+		1AAC147521106497004E320A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +96,10 @@
 			children = (
 				1AAC144F210F59D4004E320A /* GameViewController.swift */,
 				1AAC146C210FDFF0004E320A /* Scene+Extensions.swift */,
-				1AAC1451210F59D4004E320A /* Main.storyboard */,
+				1AAC147521106497004E320A /* Assets.xcassets */,
 				1AAC144D210F59D4004E320A /* art.scnassets */,
-				1AAC1454210F59D8004E320A /* Assets.xcassets */,
 				1AAC144B210F59D4004E320A /* AppDelegate.swift */,
+				1AAC1451210F59D4004E320A /* Main.storyboard */,
 				1AAC1456210F59D8004E320A /* LaunchScreen.storyboard */,
 				1AAC1459210F59D8004E320A /* Info.plist */,
 			);
@@ -192,7 +192,7 @@
 			files = (
 				1AAC144E210F59D4004E320A /* art.scnassets in Resources */,
 				1AAC1458210F59D8004E320A /* LaunchScreen.storyboard in Resources */,
-				1AAC1455210F59D8004E320A /* Assets.xcassets in Resources */,
+				1AAC147621106497004E320A /* Assets.xcassets in Resources */,
 				1AAC1453210F59D4004E320A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
