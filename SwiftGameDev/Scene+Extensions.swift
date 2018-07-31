@@ -28,57 +28,24 @@ extension SCNScene {
         _ = rootNode.newLightNode(.ambient, color: UIColor.darkGray)
         
         // floor
-        _ = rootNode.newShape(SCNFloor(), diffuse: "floor")
+        _ = rootNode.newFloorNode(diffuse: "Floor")
+        
+        // primitive nodes
+        _ = rootNode.newPyramidNode(3, 6, 3, at: [30, 0, -40], diffuse: UIColor.blue)
+        _ = rootNode.newSphereNode(6, at: [35, 6, -60], diffuse: UIColor.red)
+        _ = rootNode.newBoxNode(3,3,3, at: [20, 1.5, -20], diffuse: UIColor.brown)
+        _ = rootNode.newTubeNode(r: 1, R: 1.5, h: 2, at: [-10, 0.75, -75], diffuse: UIColor.yellow)
+        _ = rootNode.newCylinderNode(r:3, h:3, at: [0,4,-25], diffuse: UIColor.green)
+        _ = rootNode.newTorusNode(R: 7, r: 2, at: [75, 1, -80], diffuse: UIColor.orange)
         
     }// end: setup()
     
 }// end: SCNNode extension
 
+
 // my extension
 extension SCNNode {
     
-    // MARK: - Camera
-    // --------------
     
-    // add camera to node
-    // usage: let cameraNode = node.newCameraNode(at: position)
-    func newCameraNode(at position: SCNVector3? = nil, lookAt target: SCNNode? = nil) -> SCNNode {
-        
-        // camera
-        let camera = SCNCamera()
-        
-        // camera node
-        let cameraNode = SCNNode()
-        cameraNode.camera = camera
-        if let p = position { cameraNode.position = p }
-        if let t = target { cameraNode.look(at: t) }
-        
-        // graph tree
-        add(cameraNode)
-        
-        return cameraNode
-    }
-    
-    // MARK: - Lights
-    // --------------
-    
-    // usage: let lightNode = node.newLightNode(.omni, at: position)
-    func newLightNode(_ type: SCNLight.LightType, color: Any? = nil, at position:SCNVector3? = nil) -> SCNNode {
-
-        // light
-        let light = SCNLight()
-        light.type = type
-        if let c = color { light.color = c }
-        
-        // light node
-        let lightNode = SCNNode()
-        lightNode.light = light
-        if let p = position { lightNode.position = p }
-        
-        // graph tree
-        add(lightNode)
-        
-        return lightNode
-    }
     
 }// end: SCNNode extension
