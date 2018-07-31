@@ -29,8 +29,7 @@ class GameViewController: UIViewController {
     func setupSceneView() {
         
         // scene
-        //let scene = SCNScene(named: "art.scnassets/hero.dae")!
-        scene = SCNScene()
+        let scene = SCNScene(named: "art.scnassets/hero.dae")!
         scene.setup()
         
         // scene view
