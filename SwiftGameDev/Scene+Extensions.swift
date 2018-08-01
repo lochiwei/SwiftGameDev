@@ -9,8 +9,14 @@
 import SceneKit
 import Extensions
 
-// SCNNode
+
+
+// MARK: - SCNNode
+
 extension SCNNode {
+    
+    // Subnodes
+    // ----------------
     
     // earth node
     func newEarthNode(_ radius:CGFloat, at position:SCNVector3? = nil) -> SCNNode {
@@ -41,10 +47,13 @@ extension SCNNode {
         return node
     }
     
+
+    
 }// end: SCNNode extension
 
 
-// scene
+// MARK: - SCNScene
+
 extension SCNScene {
     
     func setup() {

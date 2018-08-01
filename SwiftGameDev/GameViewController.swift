@@ -52,33 +52,19 @@ class GameViewController: UIViewController {
         let hitResults = sceneView.hitTest(p, options: [:])
         
         // check that we clicked on at least one object
-        if hitResults.count > 0 {
-            
-            // retrieved the first clicked object
-            let result = hitResults[0]
-            
-            // get its material
-            let material = result.node.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = UIColor.black
-                
-                SCNTransaction.commit()
-            }
-            
+        guard hitResults.count > 0 else { return }
+        
+        // retrieved the first clicked object's material
+        let material = hitResults[0].node.geometry!.firstMaterial!
+        
+        // animate material (0.5 sec red flash)
+        run({
+            // emit red light
             material.emission.contents = UIColor.red
-            
-            SCNTransaction.commit()
-        }
+        }, completion: {
+            // after 0.5 sec, turn off emission
+            run({ material.emission.contents = UIColor.black }, duration: 0.5)
+        }, duration: 0.5)
     }
     
     // MARK: - Controller Settings
